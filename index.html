@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gioco interattivo di mira: usa la mano come pistola davanti alla webcam per colpire i dischi volanti.">
+    <title>Gioco Pistola a Mano</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="game-info">
+            <h1><span class="title-icon">🎯</span>Gioco Pistola a Mano</h1>
+
+            <div id="statusBanner" class="status-banner" hidden></div>
+
+            <div class="score-board">
+                <div class="score-item score-item--primary">
+                    <span class="score-icon" aria-hidden="true">⭐</span>
+                    <span class="score-label">Punteggio</span>
+                    <span class="score-value" id="score">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-icon" aria-hidden="true">🎯</span>
+                    <span class="score-label">Colpiti</span>
+                    <span class="score-value" id="hits">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-icon" aria-hidden="true">💨</span>
+                    <span class="score-label">Mancati</span>
+                    <span class="score-value" id="missed">0</span>
+                </div>
+            </div>
+            <button id="startBtn" class="btn btn--primary">Inizia Gioco</button>
+            <button id="pauseBtn" class="btn" disabled>Pausa</button>
+            <label class="checkbox-label">
+                <input type="checkbox" id="showSkeleton" checked>
+                <span>Mostra scheletro mano</span>
+            </label>
+        </div>
+
+        <div class="game-area">
+            <video id="video" autoplay playsinline muted></video>
+            <canvas id="gameCanvas"></canvas>
+            <canvas id="overlayCanvas"></canvas>
+            <div id="gameOverlayMessage" class="game-overlay-message">
+                <p>Premi <strong>Inizia Gioco</strong> e concedi l'accesso alla webcam</p>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>Istruzioni:</h3>
+            <ul>
+                <li>Mima una pistola con la mano (indice e pollice)</li>
+                <li>Muovi la mano per mirare</li>
+                <li>Abbassa il pollice (come un grilletto) per sparare</li>
+                <li>Colpisci i dischi volanti!</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="game.js"></script>
+</body>
+</html>
+
